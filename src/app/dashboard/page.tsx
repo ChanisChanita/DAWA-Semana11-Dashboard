@@ -12,6 +12,7 @@ import { DeleteTeamMember } from "@/components/DeleteTeamMember"
 import { TasksTable } from "@/components/TaskTable"
 import { SettingsForm } from "@/components/SettingsForm"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { ThemeToggle } from "@/components/ThemeToggle"
 import { useProjects, useTeamMembers, useTasks } from "@/context/AppContext"
 
 export default function DashboardPage() {
@@ -39,12 +40,17 @@ export default function DashboardPage() {
   return (
     <div className="container mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-slate-900 mb-2">
-          Dashboard de Proyectos
-        </h1>
-        <p className="text-slate-600">
-          Gestiona tus proyectos y tareas con shadcn/ui
-        </p>
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-2">
+              Dashboard de Proyectos
+            </h1>
+            <p className="text-slate-600 dark:text-slate-400">
+              Gestiona tus proyectos y tareas con shadcn/ui
+            </p>
+          </div>
+          <ThemeToggle />
+        </div>
         <div className="pt-4">
           <ProjectForm />
         </div>

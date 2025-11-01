@@ -1,36 +1,160 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dashboard de Proyectos DAWA - Semana 11
 
-## Getting Started
+Sistema de gestión de proyectos y tareas desarrollado con Next.js 15 y shadcn/ui, implementando todas las funcionalidades requeridas para la asignación DAWA Semana 11.
 
-First, run the development server:
+## 🚀 Características Implementadas
 
+### ✅ Componentes shadcn/ui Requeridos:
+- **Spinner**: Componente de carga utilizado en formularios y operaciones async
+- **Alert**: Sistema de alertas para notificaciones y errores
+- **Calendar**: Selector de fechas integrado en formularios de equipo y tareas
+- **Pagination**: Navegación por páginas en tablas de datos
+
+### ✅ Sistema de Temas:
+- **Tema Claro/Oscuro**: Implementación completa con soporte para:
+  - Tema claro
+  - Tema oscuro  
+  - Detección automática del sistema
+- **Botón de cambio**: Toggle rápido en el header del dashboard
+- **Configuración**: Control completo desde el panel de configuración
+
+### ✅ Gestión de Estado Global:
+- **React Context + useReducer**: Estado centralizado para toda la aplicación
+- **CRUD Completo**: Operaciones completas para proyectos, equipo y tareas
+- **Persistencia**: Estado mantenido durante toda la sesión
+
+### ✅ Dashboard Completo:
+1. **Resumen**: Métricas dinámicas y estadísticas en tiempo real
+2. **Proyectos**: Gestión completa con formularios y acciones
+3. **Tareas**: Tabla paginada con CRUD y filtros
+4. **Equipo**: Gestión de miembros con asignación a proyectos
+5. **Configuración**: Panel de configuración del sistema y tema
+
+### ✅ Funcionalidades Adicionales:
+- **Tema personalizado**: Colores púrpura/violeta usando sistema oklch
+- **Formularios avanzados**: Validación, estados de carga y manejo de errores
+- **Componentes reutilizables**: Arquitectura modular y escalable
+- **TypeScript**: Tipado completo para mayor robustez
+- **Responsive**: Diseño adaptativo para diferentes dispositivos
+
+## 🛠️ Tecnologías
+
+- **Next.js 15** - Framework React con App Router
+- **shadcn/ui** - Biblioteca de componentes UI
+- **Tailwind CSS** - Framework de estilos con tema personalizado
+- **TypeScript** - Tipado estático
+- **React Context** - Gestión de estado global
+- **date-fns** - Manejo de fechas para calendar
+- **Lucide React** - Iconografía moderna
+
+## 🚀 Instalación y Uso
+
+### Instalar dependencias:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Ejecutar en desarrollo:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Construir para producción:
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Iniciar servidor de producción:
+```bash
+npm start
+```
 
-## Learn More
+Abre [http://localhost:3000/dashboard](http://localhost:3000/dashboard) para ver la aplicación.
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Estructura del Proyecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/
+│   ├── dashboard/
+│   │   └── page.tsx          # Dashboard principal con 5 pestañas
+│   ├── globals.css           # Estilos globales y variables de tema
+│   └── layout.tsx            # Layout principal con providers
+├── components/
+│   ├── ui/                   # Componentes shadcn/ui
+│   ├── ProjectForm.tsx       # Formulario de proyectos
+│   ├── TeamMemberForm.tsx    # Formulario de miembros del equipo
+│   ├── TaskTable.tsx         # Tabla de tareas con paginación
+│   ├── SettingsForm.tsx      # Configuración del sistema
+│   ├── ThemeToggle.tsx       # Botón de cambio de tema
+│   └── ThemeProvider.tsx     # Proveedor de tema
+├── context/
+│   └── AppContext.tsx        # Estado global con React Context
+├── hooks/
+│   └── useTheme.ts           # Hook personalizado para tema
+├── types/
+│   └── index.ts              # Definiciones de tipos TypeScript
+└── lib/
+    └── utils.ts              # Utilidades y helpers
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Sistema de Temas
 
-## Deploy on Vercel
+El sistema de temas soporta tres modalidades:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Claro**: Tema claro por defecto
+2. **Oscuro**: Tema oscuro con alta legibilidad
+3. **Sistema**: Detección automática de la preferencia del sistema operativo
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Cambiar Tema:
+- **Botón rápido**: Icono en el header del dashboard
+- **Configuración**: Panel completo en la pestaña "Configuración"
+
+## 🧩 Componentes shadcn/ui Utilizados
+
+- `Button`, `Card`, `Input`, `Label`, `Select`
+- `Tabs`, `Badge`, `Avatar`, `Switch`
+- `Dialog`, `Form`, `Alert`, `Calendar`
+- `Spinner`, `Pagination`, `Dropdown Menu`
+
+## 📊 Funcionalidades CRUD
+
+### Proyectos:
+- ✅ Crear nuevos proyectos con categorías y prioridades
+- ✅ Editar información y progreso
+- ✅ Eliminar proyectos con confirmación
+- ✅ Asignar miembros del equipo
+
+### Equipo:
+- ✅ Registrar miembros con información completa
+- ✅ Asignar a proyectos específicos
+- ✅ Gestionar estado activo/inactivo
+- ✅ Formulario con calendar para fecha de nacimiento
+
+### Tareas:
+- ✅ Crear tareas asignadas a proyectos y usuarios
+- ✅ Estados: Pendiente, En progreso, Completado
+- ✅ Prioridades: Baja, Media, Alta, Urgente
+- ✅ Tabla paginada con navegación
+
+## 🔧 Configuración
+
+Panel de configuración completo con:
+- **Tema**: Claro/Oscuro/Sistema
+- **Idioma**: Español/Inglés
+- **Notificaciones**: Activar/Desactivar
+- **Paginación**: Configurar elementos por página
+- **Email**: Configurar actualizaciones por correo
+
+## 🎯 Estado del Proyecto
+
+**✅ COMPLETADO**: Todos los requisitos de la asignación DAWA Semana 11 han sido implementados exitosamente.
+
+- ✅ Componentes shadcn/ui (Spinner, Alert, Calendar, Pagination)
+- ✅ Cambio de tema (Claro/Oscuro/Sistema) 
+- ✅ Estado global con React Context
+- ✅ CRUD completo para Proyectos, Equipo y Tareas
+- ✅ Dashboard con 5 pestañas funcionales
+- ✅ Formularios con validación
+- ✅ Tema personalizado púrpura/violeta
+- ✅ Métricas dinámicas en tiempo real

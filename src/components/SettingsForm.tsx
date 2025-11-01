@@ -16,7 +16,7 @@ import { Spinner } from "@/components/ui/spinner"
 import { Switch } from "@/components/ui/switch"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useSettings, useLoading } from "@/context/AppContext"
-import { AlertTriangle, CheckCircle, Settings, Save, User, Bell, Globe, Database } from "lucide-react"
+import { AlertTriangle, CheckCircle, Settings, Save, User, Bell, Globe, Database, Sun, Moon, Monitor } from "lucide-react"
 
 export function SettingsForm() {
   const { settings, updateSettings } = useSettings()
@@ -125,7 +125,12 @@ export function SettingsForm() {
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
-                <Label htmlFor="theme">Tema</Label>
+                <Label htmlFor="theme">
+                  <div className="flex items-center gap-1">
+                    <Monitor className="h-4 w-4" />
+                    Tema
+                  </div>
+                </Label>
                 <Select
                   value={formData.theme}
                   onValueChange={(value) => setFormData({ ...formData, theme: value as any })}
@@ -135,9 +140,24 @@ export function SettingsForm() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="light">Claro</SelectItem>
-                    <SelectItem value="dark">Oscuro</SelectItem>
-                    <SelectItem value="system">Sistema</SelectItem>
+                    <SelectItem value="light">
+                      <div className="flex items-center gap-2">
+                        <Sun className="h-4 w-4" />
+                        Claro
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="dark">
+                      <div className="flex items-center gap-2">
+                        <Moon className="h-4 w-4" />
+                        Oscuro
+                      </div>
+                    </SelectItem>
+                    <SelectItem value="system">
+                      <div className="flex items-center gap-2">
+                        <Monitor className="h-4 w-4" />
+                        Sistema
+                      </div>
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
