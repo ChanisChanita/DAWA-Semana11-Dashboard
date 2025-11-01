@@ -48,7 +48,7 @@ export function TeamMemberForm({ member, isEditing = false }: TeamMemberFormProp
     position: member?.position || "",
     birthdate: member?.birthdate || new Date(),
     phone: member?.phone || "",
-    projectId: member?.projectId || "",
+    projectId: member?.projectId ? member.projectId : "none",
     isActive: member?.isActive ?? true,
   })
 
@@ -102,14 +102,19 @@ export function TeamMemberForm({ member, isEditing = false }: TeamMemberFormProp
     // Simular petición al backend
     setTimeout(() => {
       try {
+        const memberData = {
+          ...formData,
+          projectId: formData.projectId === "none" ? "" : formData.projectId,
+        }
+
         if (isEditing && member) {
           updateTeamMember({
-            ...formData,
+            ...memberData,
             createdAt: member.createdAt,
             updatedAt: new Date(),
           })
         } else {
-          addTeamMember(formData)
+          addTeamMember(memberData)
         }
         
         setSuccess(true)
@@ -122,7 +127,7 @@ export function TeamMemberForm({ member, isEditing = false }: TeamMemberFormProp
             position: "",
             birthdate: new Date(),
             phone: "",
-            projectId: "",
+            projectId: "none",
             isActive: true,
           })
         }
@@ -310,14 +315,14 @@ export function TeamMemberForm({ member, isEditing = false }: TeamMemberFormProp
               <Label htmlFor="projectId">Proyecto Asignado</Label>
               <Select
                 value={formData.projectId}
-                onValueChange={(value) => setFormData({ ...formData, projectId: value })}
+                onValueChange={(value) => setFormData({ ...formData, projectId: value === "none" ? "" : value })}
                 disabled={loading}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Seleccionar proyecto (opcional)" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Sin proyecto asignado</SelectItem>
+                  <SelectItem value="none">Sin proyecto asignado</SelectItem>
                   {projects.map(project => (
                     <SelectItem key={project.id} value={project.id}>
                       {project.name}
